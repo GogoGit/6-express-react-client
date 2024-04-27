@@ -55,9 +55,10 @@ const StyledNav = styled.nav`
 `;
 
 // const Nav = ({ loggedin, setLoggedin }) => {
-const Nav = ({ setLoggedin }) => {
+// const Nav = ({ setLoggedin }) => {
+const Nav = () => {
   //With more State variables being passed using Context we can use the spread operation on {value} that is being passed to extract the State we want to update
-  const { loggedin } = React.useContext(RecipesContext);
+  const { loggedin, setLoggedin } = React.useContext(RecipesContext);
 
   return (
     <StyledNav>
