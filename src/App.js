@@ -20,10 +20,16 @@ import useToggle from "./hooks/useToggle";
 import RecipesContext from "./RecipesContext"; //Use this to pass data vs using Prop Drilling
 
 function App() {
+  // App State
   const [recipes, setRecipes] = React.useState([]);
   const [loggedin, setLoggedin] = useToggle(false);
   const [loading, setLoading] = useToggle(true);
   const [error, setError] = React.useState("");
+
+  //{value} now encapsulates both 'recipes' and 'loggedin' states
+  const value = { recipes, loggedin };
+
+  //Example of Spread Operation
   const { get, post, del, put } = useFetch(`/api/recipes`);
 
   const addRecipe = (recipe) => {
@@ -72,30 +78,10 @@ function App() {
     return <p>{error}</p>;
   }
 
-  /*  This entire section is using Prop Drilling.  We are replacing it using CONTEXT (Passing Data Deeply)
-
+  // <RecipesContext.Provider value={recipes}>
+  // {value} = recipe and loggedin
   return (
-    <main>
-      <BrowserRouter>
-        <Nav setLoggedin={setLoggedin} loggedin={loggedin} />
-        <Routes>
-          <Route path="/" element={
-              <Recipes recipes={recipes} loggedin={loggedin} addRecipe={addRecipe} />
-            }
-          />
-          <Route path="/:recipeId" element={
-              <RecipeDetail recipes={recipes} deleteRecipe={deleteRecipe} loggedin={loggedin} editRecipe={editRecipe} />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </main>
-  );
-}
-*/
-
-  return (
-    <RecipesContext.Provider value={recipes}>
+    <RecipesContext.Provider value={value}>
       <main>
         <BrowserRouter>
           <Nav setLoggedin={setLoggedin} loggedin={loggedin} />

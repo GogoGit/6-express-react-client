@@ -13,11 +13,20 @@ import { Link, useParams } from "react-router-dom";
 
 import RecipesContext from "./RecipesContext";
 
-/* We are replacing Prop Drilling and using CONTEXT (Passing Data Deeply)
-function RecipeDetail({ recipes, loggedin, deleteRecipe, editRecipe }) {
-*/
+// Using Context to consolidate 'recipe' and 'Loggedin' State, see App.js
+/*
+ */
+
+// Using Context to consolidate 'recipe' and 'Loggedin' State, see App.js
+/*
 function RecipeDetail({ loggedin, deleteRecipe, editRecipe }) {
   const recipes = React.useContext(RecipesContext);
+*/
+
+// function RecipeDetail({ loggedin, deleteRecipe, editRecipe }) {
+//   const recipes = React.useContext(RecipesContext);
+function RecipeDetail({ deleteRecipe, editRecipe }) {
+  const { recipes, loggedin } = React.useContext(RecipesContext);
 
   const { recipeId } = useParams();
   const [recipeDeleted, setRecipeDeleted] = React.useState(false);
