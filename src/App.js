@@ -18,12 +18,21 @@ function App() {
   const [loggedin, setLoggedin] = useToggle(false);
   const [loading, setLoading] = useToggle(true);
   const [error, setError] = React.useState("");
-  const { get, post, del } = useFetch(`/api/recipes`);
+  const { get, post, del, put } = useFetch(`/api/recipes`);
 
   const addRecipe = (recipe) => {
     post("/api/recipes", recipe).then((data) => {
       setRecipes([data, ...recipes]);
     });
+  };
+
+  const editRecipe = (updatedRecipe) => {
+    console.log(updatedRecipe);
+    put(`/api/recipes/${updatedRecipe._id}`, updatedRecipe).then(
+      get("/api/recipes").then((data) => {
+        setRecipes(data);
+      })
+    );
   };
 
   const deleteRecipe = (recipeId) => {
@@ -79,6 +88,7 @@ function App() {
                 recipes={recipes}
                 deleteRecipe={deleteRecipe}
                 loggedin={loggedin}
+                editRecipe={editRecipe}
               />
             }
           />
