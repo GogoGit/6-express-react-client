@@ -58,16 +58,6 @@ const Nav = ({ loggedin, setLoggedin }) => {
         <Link to="/">Recipes</Link>
       </h1>
 
-      {/* Turnary function :) */}
-      {/* Toogle Hook used Here */}
-      {/* This is being replaced using Button.js!!!
-      {loggedin ? (
-        <button onClick={() => setLoggedin(false)}>Log Out</button>
-      ) : (
-        <button onClick={() => setLoggedin(true)}>Log In</button>
-      )} 
-      */}
-
       {loggedin ? (
         <Button func={() => setLoggedin(false)}>Log Out</Button>
       ) : (

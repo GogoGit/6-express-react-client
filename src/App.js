@@ -26,9 +26,6 @@ function App() {
   const [loading, setLoading] = useToggle(true);
   const [error, setError] = React.useState("");
 
-  //{value} now encapsulates both 'recipes' and 'loggedin' states
-  const value = { recipes, loggedin };
-
   //Example of Spread Operation
   const { get, post, del, put } = useFetch(`/api/recipes`);
 
@@ -56,6 +53,12 @@ function App() {
       )
     );
   };
+
+  //{value} now encapsulates both 'recipes' and 'loggedin' states
+  //Not sure how to use Context for 'setLoggedin'????
+  // const value = { recipes, loggedin, setLoggedin };
+  const value = { recipes };
+
   /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
     setLoading(true);
@@ -84,18 +87,25 @@ function App() {
     <RecipesContext.Provider value={value}>
       <main>
         <BrowserRouter>
+          {/* <Nav setLoggedin={setLoggedin} loggedin={loggedin} /> */}
           <Nav setLoggedin={setLoggedin} loggedin={loggedin} />
           <Routes>
             {/* NOTE - we no longer pass recipes as a prop to Recipes */}
             <Route
               path="/"
-              element={<Recipes loggedin={loggedin} addRecipe={addRecipe} />}
+              element={
+                <Recipes
+                  // recipes={recipes}
+                  loggedin={loggedin}
+                  addRecipe={addRecipe}
+                />
+              }
             />
             <Route
               path="/:recipeId"
               element={
                 <RecipeDetail
-                  recipes={recipes}
+                  // recipes={recipes}
                   deleteRecipe={deleteRecipe}
                   loggedin={loggedin}
                   editRecipe={editRecipe}

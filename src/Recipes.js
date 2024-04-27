@@ -4,9 +4,10 @@ import FormCreateRecipe from "./FormCreateRecipe";
 import RecipesContext from "./RecipesContext";
 
 // function Recipes({ loggedin, addRecipe }) {
-function Recipes({ addRecipe }) {
+// function Recipes({ addRecipe }) {
+function Recipes() {
   // const recipes = React.useContext(RecipesContext);
-  const { recipes, loggedin } = React.useContext(RecipesContext);
+  // const { recipes, loggedin, addRecipe } = React.useContext(RecipesContext);
   return (
     <section>
       {loggedin && <FormCreateRecipe addRecipe={addRecipe} />}
