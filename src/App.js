@@ -86,7 +86,9 @@ function App() {
     <RecipesContext.Provider value={value}>
       <main>
         <BrowserRouter>
-          <Nav setLoggedin={setLoggedin} loggedin={loggedin} />
+          {/* NOTE - we no longer pass loggedin as a prop to Nav */}
+          {/* <Nav setLoggedin={setLoggedin} loggedin={loggedin} /> */}
+          <Nav setLoggedin={setLoggedin} />
           <Routes>
             {/* NOTE - we no longer pass recipes as a prop to Recipes */}
             <Route

@@ -20,7 +20,7 @@ import RecipesContext from "./RecipesContext";
 function RecipeDetail({ deleteRecipe, editRecipe }) {
   //New Line
   // const recipes = React.useContext(RecipesContext);
-  //Will more State variables being passed using Context we can use the spread operation on {value} that is being passed to extract the State we want to update
+  //Wilh more State variables being passed using Context we can use the spread operation on {value} that is being passed to extract the State we want to update
   const { recipes, loggedin } = React.useContext(RecipesContext);
 
   const { recipeId } = useParams();

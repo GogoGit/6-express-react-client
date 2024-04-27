@@ -30,6 +30,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "./Button"; //Note this was a Default Export!
 
+//New Line
+import RecipesContext from "./RecipesContext";
+
 const StyledNav = styled.nav`
   --bg-color: #007eb6;
   --btn-color: var(
@@ -51,7 +54,11 @@ const StyledNav = styled.nav`
   }
 `;
 
-const Nav = ({ loggedin, setLoggedin }) => {
+// const Nav = ({ loggedin, setLoggedin }) => {
+const Nav = ({ setLoggedin }) => {
+  //With more State variables being passed using Context we can use the spread operation on {value} that is being passed to extract the State we want to update
+  const { loggedin } = React.useContext(RecipesContext);
+
   return (
     <StyledNav>
       <h1>
