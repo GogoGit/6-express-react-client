@@ -2,13 +2,22 @@ import React from "react";
 import Recipe from "./Recipe";
 import FormCreateRecipe from "./FormCreateRecipe";
 
-function Recipes({ recipes, loggedin, addRecipe }) {
+//New Line
+import RecipesContext from "./RecipesContext";
+
+//Replacing Prop Drilling with Context (Passing Data Deeply)
+// function Recipes({ recipes, loggedin, addRecipe }) {
+// function Recipes({ loggedin, addRecipe }) {
+function Recipes({ addRecipe }) {
+  //New Line
+  // const recipes = React.useContext(RecipesContext);
+  //Will more State variables being passed using Context we can use the spread operation on {value} that is being passed to extract the State we want to update
+  const { recipes, loggedin } = React.useContext(RecipesContext);
+
   return (
     <section>
-      {/* {loggedin && <FormCreateRecipe  />} */}
       {loggedin && <FormCreateRecipe addRecipe={addRecipe} />}
       {recipes.map((recipe) => (
-        // Note for React we need a key (we used index when we didn't have an ID to use!)
         <Recipe key={recipe._id} recipe={recipe} />
       ))}
     </section>

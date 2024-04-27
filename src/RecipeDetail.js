@@ -11,8 +11,18 @@ import React from "react";
 import FormEditRecipe from "./FormEditRecipe";
 import { Link, useParams } from "react-router-dom";
 
-// function RecipeDetail({ recipes, loggedin, deleteRecipe }) {
-function RecipeDetail({ recipes, loggedin, deleteRecipe, editRecipe }) {
+//New Line
+import RecipesContext from "./RecipesContext";
+
+//Replacing Prop Drilling with Context (Passing Data Deeply)
+// function RecipeDetail({ recipes, loggedin, deleteRecipe, editRecipe }) {
+// function RecipeDetail({ loggedin, deleteRecipe, editRecipe }) {
+function RecipeDetail({ deleteRecipe, editRecipe }) {
+  //New Line
+  // const recipes = React.useContext(RecipesContext);
+  //Will more State variables being passed using Context we can use the spread operation on {value} that is being passed to extract the State we want to update
+  const { recipes, loggedin } = React.useContext(RecipesContext);
+
   const { recipeId } = useParams();
   const [recipeDeleted, setRecipeDeleted] = React.useState(false);
 
