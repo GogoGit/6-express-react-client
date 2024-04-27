@@ -1,8 +1,12 @@
 /* 
-    In deleteRecipe, check out:  .then(window.location.replace("/"));   //This is like a windows refresh page
-        We eventually change it to
-            del(`/api/recipes/${recipeId}`).then(
-                setRecipes((recipes) => recipes.filter((recipe) => recipe._id !== recipeId))
+  Adding Context (Passing Data Deeply) vs drilling it down!
+    https://react.dev/learn/passing-data-deeply-with-context  
+    https://legacy.reactjs.org/docs/context.html
+
+  In deleteRecipe, check out:  .then(window.location.replace("/"));   //This is like a windows refresh page
+    We eventually change it to
+        del(`/api/recipes/${recipeId}`).then(
+            setRecipes((recipes) => recipes.filter((recipe) => recipe._id !== recipeId))
 */
 
 import React from "react";
@@ -12,6 +16,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useFetch } from "./hooks/useFetch";
 import Nav from "./Nav";
 import useToggle from "./hooks/useToggle";
+
+import RecipesContext from "./RecipesContext"; //Use this to pass data vs using Prop Drilling
 
 function App() {
   const [recipes, setRecipes] = React.useState([]);
@@ -66,35 +72,54 @@ function App() {
     return <p>{error}</p>;
   }
 
+  /*  This entire section is using Prop Drilling.  We are replacing it using CONTEXT (Passing Data Deeply)
+
   return (
     <main>
       <BrowserRouter>
         <Nav setLoggedin={setLoggedin} loggedin={loggedin} />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Recipes
-                recipes={recipes}
-                loggedin={loggedin}
-                addRecipe={addRecipe}
-              />
+          <Route path="/" element={
+              <Recipes recipes={recipes} loggedin={loggedin} addRecipe={addRecipe} />
             }
           />
-          <Route
-            path="/:recipeId"
-            element={
-              <RecipeDetail
-                recipes={recipes}
-                deleteRecipe={deleteRecipe}
-                loggedin={loggedin}
-                editRecipe={editRecipe}
-              />
+          <Route path="/:recipeId" element={
+              <RecipeDetail recipes={recipes} deleteRecipe={deleteRecipe} loggedin={loggedin} editRecipe={editRecipe} />
             }
           />
         </Routes>
       </BrowserRouter>
     </main>
+  );
+}
+*/
+
+  return (
+    <RecipesContext.Provider value={recipes}>
+      <main>
+        <BrowserRouter>
+          <Nav setLoggedin={setLoggedin} loggedin={loggedin} />
+          <Routes>
+            {/* NOTE - we no longer pass recipes as a prop to Recipes */}
+            <Route
+              path="/"
+              element={<Recipes loggedin={loggedin} addRecipe={addRecipe} />}
+            />
+            <Route
+              path="/:recipeId"
+              element={
+                <RecipeDetail
+                  recipes={recipes}
+                  deleteRecipe={deleteRecipe}
+                  loggedin={loggedin}
+                  editRecipe={editRecipe}
+                />
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </main>
+    </RecipesContext.Provider>
   );
 }
 

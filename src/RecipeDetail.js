@@ -11,8 +11,14 @@ import React from "react";
 import FormEditRecipe from "./FormEditRecipe";
 import { Link, useParams } from "react-router-dom";
 
-// function RecipeDetail({ recipes, loggedin, deleteRecipe }) {
+import RecipesContext from "./RecipesContext";
+
+/* We are replacing Prop Drilling and using CONTEXT (Passing Data Deeply)
 function RecipeDetail({ recipes, loggedin, deleteRecipe, editRecipe }) {
+*/
+function RecipeDetail({ loggedin, deleteRecipe, editRecipe }) {
+  const recipes = React.useContext(RecipesContext);
+
   const { recipeId } = useParams();
   const [recipeDeleted, setRecipeDeleted] = React.useState(false);
 
