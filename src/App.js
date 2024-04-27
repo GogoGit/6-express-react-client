@@ -8,7 +8,6 @@
 
 };
 
-
 */
 
 import React from "react";
@@ -25,13 +24,35 @@ function App() {
   const [loading, setLoading] = useToggle(true);
   const [error, setError] = React.useState("");
   //   const { get } = useFetch(`/api/recipes`);
-  const { get, post } = useFetch(`/api/recipes`);
+  // const { get, post } = useFetch(`/api/recipes`);
+  const { get, post, del } = useFetch(`/api/recipes`);
 
   const addRecipe = (recipe) => {
     post("/api/recipes", recipe).then((data) => {
       setRecipes([data, ...recipes]);
     });
   };
+
+  const deleteRecipe = (recipeId) => {
+    console.log("recipeId:", recipeId);
+    // del(`/api/recipes/${recipeId}`).then(window.location.replace("/"));
+    del(`/api/recipes/${recipeId}`).then(
+      setRecipes((recipes) =>
+        recipes.filter((recipe) => recipe._id !== recipeId)
+      )
+    );
+  };
+
+  <Route
+    path="/:recipeId"
+    element={
+      <RecipeDetail
+        recipes={recipes}
+        deleteRecipe={deleteRecipe}
+        loggedin={loggedin}
+      />
+    }
+  />;
 
   /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
