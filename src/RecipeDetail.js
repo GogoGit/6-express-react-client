@@ -17,11 +17,13 @@ import RecipesContext from "./RecipesContext";
 //Replacing Prop Drilling with Context (Passing Data Deeply)
 // function RecipeDetail({ recipes, loggedin, deleteRecipe, editRecipe }) {
 // function RecipeDetail({ loggedin, deleteRecipe, editRecipe }) {
-function RecipeDetail({ deleteRecipe, editRecipe }) {
+// function RecipeDetail({ deleteRecipe, editRecipe }) {
+// function RecipeDetail({ editRecipe }) {
+function RecipeDetail({ editRecipe }) {
   //New Line
   // const recipes = React.useContext(RecipesContext);
   //Wilh more State variables being passed using Context we can use the spread operation on {value} that is being passed to extract the State we want to update
-  const { recipes, loggedin } = React.useContext(RecipesContext);
+  const { recipes, loggedin, deleteRecipe } = React.useContext(RecipesContext);
 
   const { recipeId } = useParams();
   const [recipeDeleted, setRecipeDeleted] = React.useState(false);

@@ -16,10 +16,18 @@
 import React from "react";
 import Button from "./Button";
 
+//New Line
+import RecipesContext from "./RecipesContext";
+
 //Normally you would update these as empty strings but we set values to make testing easier!
 //**** it should be "created" vs "year" if we look at the db schema.
 //      See http://localhost:3456/api/recipes and you'll see what happens when you add a recipe.. you don't see "year".
-const FormCreateRecipe = ({ addRecipe }) => {
+// const FormCreateRecipe = ({ addRecipe }) => {
+const FormCreateRecipe = () => {
+  //New Line
+  //With more State variables being passed using Context we can use the spread operation on {value} that is being passed to extract the State we want to update
+  const { addRecipe } = React.useContext(RecipesContext);
+
   const [values, setValues] = React.useState({
     title: "Recipe Title",
     image: "toast.png",

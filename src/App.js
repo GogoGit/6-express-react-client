@@ -54,7 +54,14 @@ function App() {
 
   // create a new variable 'value'
   //{value} now encapsulates the states that we want to track using Context (Passing Data Deeply)
-  const value = { recipes, loggedin, setLoggedin };
+  const value = {
+    recipes,
+    loggedin,
+    setLoggedin,
+    addRecipe,
+    deleteRecipe,
+    editRecipe,
+  };
 
   /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
@@ -82,7 +89,6 @@ function App() {
     //New Line
     //New we pass the Provider the {value} of all the States that we want to pass via Context
     //See ~ line 57 for what {value} encapsulates
-    // value = { recipes, loggedin, setLoggedin }
     <RecipesContext.Provider value={value}>
       <main>
         <BrowserRouter>
@@ -97,7 +103,8 @@ function App() {
               element={
                 // <Recipes recipes={recipes} loggedin={loggedin} addRecipe={addRecipe} />
                 // <Recipes loggedin={loggedin} addRecipe={addRecipe} />
-                <Recipes addRecipe={addRecipe} />
+                // <Recipes addRecipe={addRecipe} />
+                <Recipes />
               }
             />
             <Route
@@ -105,10 +112,9 @@ function App() {
               element={
                 // <RecipeDetail recipes={recipes} deleteRecipe={deleteRecipe} loggedin={loggedin} editRecipe={editRecipe} />
                 // <RecipeDetail deleteRecipe={deleteRecipe} loggedin={loggedin} editRecipe={editRecipe} />
-                <RecipeDetail
-                  deleteRecipe={deleteRecipe}
-                  editRecipe={editRecipe}
-                />
+                // <RecipeDetail deleteRecipe={deleteRecipe} editRecipe={editRecipe} />
+                // <RecipeDetail editRecipe={editRecipe} />
+                <RecipeDetail />
               }
             />
           </Routes>

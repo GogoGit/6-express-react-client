@@ -1,7 +1,15 @@
 import React from "react";
 import Button from "./Button";
 
-const FormEditRecipe = ({ editRecipe, thisRecipe }) => {
+//New Line
+import RecipesContext from "./RecipesContext";
+
+// const FormEditRecipe = ({ editRecipe, thisRecipe }) => {
+const FormEditRecipe = ({ thisRecipe }) => {
+  //New Line
+  //Wilh more State variables being passed using Context we can use the spread operation on {value} that is being passed to extract the State we want to update
+  const { editRecipe } = React.useContext(RecipesContext);
+
   const [values, setValues] = React.useState({
     title: thisRecipe.title,
     image: thisRecipe.image,
