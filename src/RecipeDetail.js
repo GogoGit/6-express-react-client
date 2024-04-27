@@ -38,6 +38,8 @@ function RecipeDetail({ recipes, loggedin, deleteRecipe }) {
       <img src={`/img/${thisRecipe.image}`} alt={thisRecipe.title} />
       <h1>{thisRecipe.title}</h1>
       <p>{thisRecipe.description}</p>
+
+      {/* <button onClick={() => deleteRecipe(thisRecipe._id)}>delete</button> */}
       {loggedin && <button onClick={() => delRecipe()}>delete</button>}
 
       <Link to="/">Home</Link>
