@@ -82,7 +82,28 @@ function App() {
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return (
+      <>
+        <p>Lost Connection with Space Station</p>
+        <img
+          src="https://www.symmetrymagazine.org/sites/default/files/styles/2015_hero/public/2023-04/Hitomi-s.jpg?itok=ERj5BjdF"
+          alt="Lost Connection"
+        ></img>
+        <p>Please call Ground Control!</p>
+
+        <p>Current Live Feed</p>
+        <iframe
+          width="1128"
+          height="635"
+          src="https://www.youtube.com/embed/ydhE7wThDtI"
+          title="Puddles Pity Party - SPACE ODDITY (David Bowie Cover)"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </>
+    );
   }
 
   return (
